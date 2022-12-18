@@ -8,13 +8,15 @@ const operadores = document.querySelectorAll("[id*=operador]");
 let novoNUmero = true;
 let operador;
 let numeroAnterior;
-
+//verifica se o "operador" é diferente de vazio
 const operacaoPendente = () => operador !== undefined;
-
+// primeiro verifica se tem uma "operacaoPendente"se sim ele calcula
 const calcular = () => {
     if (operacaoPendente()) {
+        // pega o conteudo de texto que é uma string e passa para numero em seguida
         const numeroAtual = parseFloat(display.textContent.replace(",","."));
         novoNUmero = true;
+        //pega o "numeroAtual o operador e o numeroAtual faz a conta e "atualiza O display
         const resultado = eval (`${numeroAnterior}${operador}${numeroAtual}`);
         atualizarDisplay(resultado);
     }
@@ -52,13 +54,14 @@ const ativarIgual = () => {
     calcular();
     operador = undefined ;
 }
+// busca o id "igual"chama o evento de click em seguida chama funcao "ativarIgual"
 document.getElementById("igual").addEventListener("click", ativarIgual)
-
+// funcao para limpar o display
 const limparDisplay = () => {
     display.textContent = ""
 }
 document.getElementById("limpardisplay").addEventListener("click", limparDisplay);
-
+// chama o "limparDisplay" e limpa operador novoNumero e numeroAnterior
 const limparCalculo = () => {
     limparDisplay();
     operador = undefined;
